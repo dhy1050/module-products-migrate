@@ -1,0 +1,29 @@
+<h1>in productContent.phtml now</h1>
+
+<p>
+	
+<?php 
+$collections = $block->getProductCollect();
+$countOfProducts = 0;
+$assignCategoryId = 4;
+foreach($collections as $product) {
+
+	$categoryIds = $product->getCategoryIds();
+
+	array_push($categoryIds, $assignCategoryId);
+
+	$block->addCategoriesToProduct($product->getSku(), $categoryIds);
+
+	$countOfProducts++;
+}
+echo "total of products is: ";
+echo count($collections);
+echo "<br>";
+echo "<br>";
+
+echo "execute " . $countOfProducts . " products for adding category: " . $block->getCategory($assignCategoryId)->getName();
+echo "<br>";
+echo "<br>";
+?>
+
+</p>
