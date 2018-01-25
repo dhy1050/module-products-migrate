@@ -2,7 +2,7 @@
 namespace MaggyLondon\ProductsMigrate\Block;
      
 use Magento\Framework\View\Element\Template;
-use Hanying\HelloWorld\Helper\Data;
+use MaggyLondon\ProductsMigrate\Helper\Data;
       
 class Product extends Template
 {    

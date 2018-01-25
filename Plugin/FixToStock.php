@@ -1,7 +1,7 @@
 <?php
 namespace MaggyLondon\ProductsMigrate\Plugin;
 
-use Hanying\HelloWorld\Helper\Data;
+use MaggyLondon\ProductsMigrate\Helper\Data;
 use Magento\CatalogInventory\Helper\Stock;
 
 class FixToStock extends Stock

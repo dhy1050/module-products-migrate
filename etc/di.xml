@@ -4,4 +4,11 @@
     <type name="Magento\CatalogInventory\Helper\Stock">
     	<plugin name="MaggyLondon_ProductsMigrate_plugin_FixToStock" type="MaggyLondon\ProductsMigrate\Plugin\FixToStock"/>
     </type>
+    <type name="Magento\Framework\Console\CommandList">
+    	<arguments>
+    		<argument name="commands" xsi:type="array">
+    			<item name="productsMigrateCommand" xsi:type="object">MaggyLondon\ProductsMigrate\Console\Command\ProductsMigrateCommand</item>
+    		</argument>
+    	</arguments>
+    </type>
 </config>
