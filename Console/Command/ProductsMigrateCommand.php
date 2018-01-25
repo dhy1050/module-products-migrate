@@ -9,12 +9,19 @@ use MaggyLondon\ProductsMigrate\Block\Product;
 Class ProductsMigrateCommand extends Command
 {
 	private $getProuduct;
-	// private $state;
+	private $appState;
 
-	public function __construct(Product $product, \Magento\Framework\App\State $state) 
+
+	public function __construct(
+		\Magento\Framework\App\State $state
+	) 
 	{
-		$this->getProuduct = $product;
-		$state->setAreaCode('frontend');
+		// $this->product = $product;
+		
+		$this->appState = $state;
+
+		parent::__construct();
+
 	}
 
 	protected function configure()
@@ -27,11 +34,26 @@ Class ProductsMigrateCommand extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		 // required for repository functionality
-        // $this->state->setAreaCode(
-        //     \Magento\Framework\App\Area::GLOBAL
-        // );
-     
+		if (!$this->appState->getAreaCode()) {
+		  $this->appState->setAreaCode('frontend');
+		}
+		$this->getProuduct = $this->product();
+	
+		$output->writeln(count($this->getProuduct()));
 		$output->writeln("hey, testing!");
+	}
+
+	public function product() 
+	{
+		if (!$this->appState->getAreaCode()) {
+		  $this->appState->setAreaCode('frontend');
+		}
+		$objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+
+        $productCollectionFactory = $objectManager->get('\MaggyLondon\ProductsMigrate\Block\ProductFactory');
+        $collection = $productCollectionFactory->create();
+
+		$getProuduct = $collection->getProductCollect();
+		return $getProuduct;
 	}
 }

@@ -16,6 +16,7 @@ class Product extends Template
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
         \Magento\CatalogInventory\Model\Stock\StockItemRepository $stockItemRepository,  
         \Magento\Catalog\Model\CategoryFactory $categoryFactory,   
+        \Magento\Framework\App\State $state,
         Data $helperData,   
         array $data = []
     )
@@ -24,6 +25,8 @@ class Product extends Template
         $this->productStock = $stockItemRepository; 
         $this->_categoryFactory = $categoryFactory;
         $this->_helperData = $helperData;
+        
+        $state->setAreaCode('frontend');
         parent::__construct($context, $data);
     }
     /*
